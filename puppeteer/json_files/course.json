@@ -1,0 +1,67 @@
+[
+  {
+    "level": "INTERMEDIATE",
+    "title": "MERN From Scratch | eCommerce Platform",
+    "url": "https://www.traversymedia.com/mern-stack-from-scratch"
+  },
+  {
+    "level": "ALL LEVELS",
+    "title": "Modern JavaScript From The Beginning 2.0",
+    "url": "https://traversymedia.com/modern-javascript-2-0"
+  },
+  {
+    "level": "BEGINNER",
+    "title": "Tailwind CSS From Scratch",
+    "url": "https://traversymedia.com/tailwind-css-course"
+  },
+  {
+    "level": "BEGINNER - INTERMEDIATE",
+    "title": "React Front To Back",
+    "url": "https://traversymedia.com/Modern-React-Front-To-Back-Course"
+  },
+  {
+    "level": "ALL LEVELS",
+    "title": "50 Projects in 50 Days - HTML, CSS & JavaScript",
+    "url": "https://traversymedia.com/50-Projects-In-50-Days"
+  },
+  {
+    "level": "BEGINNER",
+    "title": "Modern HTML & CSS From The Beginning",
+    "url": "https://traversymedia.com/modern-html-css-course"
+  },
+  {
+    "level": "INTERMEDIATE",
+    "title": "Node.js API Masterclass",
+    "url": "https://traversymedia.com/node-js-api-masterclass"
+  },
+  {
+    "level": "INTERMEDIATE",
+    "title": "Next.js Dev To Deployment",
+    "url": "https://traversymedia.com/next-js-dev-to-deployment"
+  },
+  {
+    "level": "INTERMEDIATE",
+    "title": "Python Django Dev To Deployment",
+    "url": "https://traversymedia.com/Python-Django-Dev-To-Deployment"
+  },
+  {
+    "course": "Single-Course",
+    "pricing": "$25/Course",
+    "heading": "Buy once, own it forever"
+  },
+  {
+    "course": "Monthly Membership",
+    "pricing": "$25/Month",
+    "heading": "Become a Pro Member"
+  },
+  {
+    "course": "Yearly Membership",
+    "pricing": "$200/Year",
+    "heading": "Become a VIP Member"
+  },
+  {
+    "course": "Freelance Mastery",
+    "about": "Brad Traversy and Kyle Prinsloo have teamed up to bring you a business-based course to show you how to create a successful freelancing business from the ground up.",
+    "url": "https://freelancemastery.dev/"
+  }
+]
