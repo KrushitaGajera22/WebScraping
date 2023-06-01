@@ -1,8 +1,9 @@
+const fs = require("fs");
 const puppeteer = require("puppeteer");
 
 (async () => {
   const browser = await puppeteer.launch({
-    // headless: false,
+    headless: false,
     defaultViewport: false,
     userDataDir: "./tmp",
   });
@@ -15,39 +16,83 @@ const puppeteer = require("puppeteer");
     ".s-main-slot.s-result-list.s-search-results.sg-row > .s-result-item"
   );
 
-  let i = 0;
-
   let items = [];
 
-  for (const product of products) {
-    let title = "Null";
-    let price = "Null";
-    let img = "Null";
+  let isBtnDisabled = false;
+  while (!isBtnDisabled) {
+    for (const product of products) {
+      let title = "Null";
+      let price = "Null";
+      let img = "Null";
+      let rating = "Null";
+      let stock = "Null";
+      // let delivery = "Null";
 
-    try {
-      title = await page.evaluate(
-        (e) => e.querySelector("h2 > a > span").textContent,
-        product
-      );
-    } catch (error) {}
-    try {
-      price = await page.evaluate(
-        (e) => e.querySelector(".a-price > .a-offscreen").textContent,
-        product
-      );
-    } catch (error) {}
-    try {
-      img = await page.evaluate(
-        (e) => e.querySelector(".s-image").getAttribute("src"),
-        product
-      );
-    } catch (error) {}
+      try {
+        title = await page.evaluate(
+          (e) => e.querySelector("h2 > a > span").textContent,
+          product
+        );
+      } catch (error) {}
+      try {
+        price = await page.evaluate(
+          (e) => e.querySelector(".a-price > .a-offscreen").textContent,
+          product
+        );
+      } catch (error) {}
+      try {
+        img = await page.evaluate(
+          (e) => e.querySelector(".s-image").getAttribute("src"),
+          product
+        );
+      } catch (error) {}
+      try {
+        rating = await page.evaluate(
+          (e) => e.querySelector(".a-icon-alt").textContent,
+          product
+        );
+      } catch (error) {}
+      try {
+        stock = await page.evaluate(
+          (e) =>
+            e.querySelector(
+              ".a-row.a-size-base.a-color-secondary .a-size-base.a-color-price"
+            ).textContent,
+          product
+        );
+      } catch (error) {}
+      // try {
+      //   delivery = await page.evaluate(
+      //     (e) =>
+      //       e.querySelector(
+      //         ".a-row.a-size-base.a-color-secondary.s-align-children-center > span > span.a-color-base"
+      //       ).textContent,
+      //     product
+      //   );
+      //   console.log(delivery);
+      // } catch (error) {
+      //   console.log(error);
+      // }
 
-    if (title !== "Null") {
-         items.push({title, price, img});
+      if (title !== "Null") {
+        items.push({ title, price, img, rating, stock });
+      }
+
+      await page.waitForSelector("li.a-last", { visible: true });
+      const is_disabled = (await page.$("li.a-disabled.a-last")) == null;
+
+      isBtnDisabled = is_disabled;
+      if (!is_disabled) {
+        page.click("li.a-last");
+      }
     }
   }
-
   console.log(items);
+
+  // save data to JSON file
+  // fs.writeFile("./json_files/items.json", JSON.stringify(items), (err) => {
+  //   if (err) throw err;
+  //   console.log("items File Saved");
+  // });
   // await browser.close();
 })();
